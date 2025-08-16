@@ -1,0 +1,9 @@
+[
+    { "id": "taglio", "name": "Taglio", "duration": 60, "cost": 0 },
+    { "id": "colore", "name": "Colore", "duration": 90, "cost": 0 },
+    { "id": "colpi_di_sole", "name": "Colpi di sole", "duration": 120, "cost": 0 },
+    { "id": "piega", "name": "Piega", "duration": 30, "cost": 0 },
+    { "id": "piega_lunga", "name": "Piega lunga", "duration": 50, "cost": 0 },
+    { "id": "nanoplastia", "name": "Nanoplastia", "duration": 180, "cost": 0 },
+    { "id": "keratina", "name": "Keratina", "duration": 90, "cost": 0 }
+]

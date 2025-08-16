@@ -1,0 +1,1129 @@
+/* General Resets and Body Styles */
+:root {
+  --background-color: #f0f2f5;
+  --panel-background: #ffffff;
+  --primary-green: #00a884;
+  --secondary-green: #008069;
+  --text-primary: #111b21;
+  --text-secondary: #667781;
+  --border-color: #e9edef;
+  --button-hover-light: #f5f5f5;
+  --font-family: 'Inter', sans-serif;
+  --font-family-display: 'Dancing Script', cursive;
+  --today-highlight: #e6f5f3;
+  --event-color: #00a884;
+  --modal-backdrop: rgba(0, 0, 0, 0.6);
+  --danger-red: #d32f2f;
+  --danger-red-hover: #c62828;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  min-height: 100vh;
+  position: relative; /* Needed for pseudo-element positioning */
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/logo.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain; /* Adjust as needed: contain or cover */
+    opacity: 0.05; /* Adjust for desired transparency */
+    z-index: -1; /* Place behind other content */
+}
+
+#root {
+  width: 100%;
+  max-width: 800px;
+  position: relative; /* Ensure #root content is above the background pseudo-element */
+  z-index: 0;
+}
+
+.app-logo {
+    display: block;
+    margin: 10px auto;
+    max-width: 120px; /* Adjust size as needed */
+    height: auto;
+}
+
+/* --- Login Component Styles --- */
+.login-container {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.login-box {
+  background-color: var(--panel-background);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+}
+
+.login-content {
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.login-instructions {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.qr-code-container {
+  width: 200px;
+  height: 200px;
+  background-color: #f0f2f5;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-code-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.login-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 500;
+  min-height: 24px;
+}
+
+.login-steps {
+  list-style: none;
+  text-align: left;
+  font-size: 13px;
+  color: var(--text-secondary);
+  background-color: #fafafa;
+  border: 1px solid var(--border-color);
+  padding: 12px 16px;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.login-steps li {
+  margin-bottom: 6px;
+}
+.login-steps li:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Main App Container --- */
+.app-container {
+  background-color: var(--panel-background);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header and Tabs */
+.app-header {
+  padding: 16px 24px;
+  background-color: var(--panel-background);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.app-header h1 {
+  font-family: var(--font-family-display);
+  font-size: 28px;
+  font-weight: 400;
+  text-align: center;
+  flex-grow: 1;
+  color: var(--text-primary);
+}
+
+.tabs {
+  display: flex;
+  background-color: #f6f6f6;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tab {
+  padding: 14px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.tab.active {
+  color: var(--primary-green);
+  border-bottom-color: var(--primary-green);
+}
+
+.tab:hover {
+  background-color: #eeeeee;
+}
+
+/* Main Content Area */
+.content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 50vh;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-section label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.form-section .description {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: -4px;
+}
+
+/* Form Elements */
+textarea, select, input[type="date"], input[type="time"], input[type="text"], input[type="tel"], input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: var(--font-family);
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+textarea:focus, select:focus, input[type="date"]:focus, input[type="time"]:focus, input[type="text"]:focus, input[type="tel"]:focus, input[type="number"]:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 2px rgba(0, 168, 132, 0.2);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+select:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.2s, opacity 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background-color: var(--primary-green);
+  color: white;
+  width: 100%;
+  padding: 12px;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-green);
+}
+
+.btn-primary:disabled {
+    background-color: #b0d9d3;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: #f0f2f5;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: #e9edef;
+}
+
+.btn-secondary:disabled {
+    cursor: not-allowed;
+    background-color: #e9edef;
+    opacity: 0.7;
+}
+
+.btn-danger {
+    background-color: var(--danger-red);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-red-hover);
+}
+
+.btn-danger:disabled {
+    background-color: #f44336;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--primary-green);
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+.btn-link:disabled {
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+.btn-logout {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.btn-logout:hover {
+    background: var(--button-hover-light);
+    color: var(--text-primary);
+}
+
+/* File Upload */
+.file-upload-wrapper {
+  position: relative;
+}
+
+.file-upload-wrapper input[type="file"] {
+  display: none;
+}
+
+.file-upload-info {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    text-align: center;
+    min-height: 18px;
+}
+
+/* Message Composer */
+.message-composer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.message-composer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Footer */
+.app-footer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 16px;
+  border-top: 1px solid var(--border-color);
+  background-color: #f6f6f6;
+}
+
+/* Status Bar */
+.status-bar {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding-top: 8px;
+    min-height: 20px;
+}
+
+/* Spinner for loading state */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+.spinner.dark {
+    border-color: rgba(0, 0, 0, 0.1);
+    border-top-color: var(--text-secondary);
+}
+
+.spinner.small {
+    width: 14px;
+    height: 14px;
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Calendar Component --- */
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 16px;
+}
+
+/* Groups for better flexbox control */
+.calendar-header-left, .calendar-header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+
+.calendar-header h2 {
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: capitalize;
+  text-align: center;
+  flex-grow: 1;
+  margin: 0 10px;
+}
+
+/* Styled navigation arrows */
+.calendar-nav-arrows {
+    display: flex;
+}
+.calendar-nav-arrows button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  border-radius: 6px;
+  line-height: 1;
+}
+.calendar-nav-arrows button:hover {
+    background-color: var(--button-hover-light);
+}
+
+.btn-add-appointment {
+    background-color: var(--primary-green);
+    color: white;
+    width: auto !important;
+    padding: 8px 14px !important;
+    font-size: 14px;
+    height: 38px;
+}
+.btn-add-appointment:hover {
+    background-color: var(--secondary-green);
+}
+
+/* View switcher for Month/Week/Day */
+.view-switcher {
+    display: flex;
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: var(--button-hover-light);
+    border: 1px solid var(--border-color);
+    height: 38px;
+}
+.view-switcher .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 0;
+    color: var(--text-secondary);
+    background-color: transparent;
+    border-left: 1px solid var(--border-color);
+    line-height: normal;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+}
+.view-switcher .btn:first-child {
+    border-left: none;
+}
+.view-switcher .btn.active {
+    background-color: var(--primary-green);
+    color: white;
+    font-weight: 600;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+.view-switcher .btn:not(.active):hover {
+    background-color: #e9edef;
+}
+
+
+.calendar-grid, .week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-top: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+}
+.calendar-day-header {
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  padding: 8px 4px;
+  background-color: #f8f9fa;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+.calendar-day {
+  position: relative;
+  min-height: 120px;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 4px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+.calendar-day:hover {
+  background-color: #fcfcfc;
+}
+.calendar-day.other-month {
+  background-color: #f8f9fa;
+  color: #ccc;
+}
+.calendar-day.is-today {
+  background-color: var(--today-highlight);
+}
+.calendar-day.week-view-day {
+  min-height: 30vh;
+  overflow-y: auto;
+}
+.day-number {
+  font-size: 13px;
+  font-weight: 500;
+}
+.day-number.is-today-num {
+    background-color: var(--primary-green);
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.events-container {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.event-item {
+  background-color: var(--event-color);
+  color: white;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+/* Day view - Updated */
+.day-view-container {
+    max-height: 70vh;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    position: relative; /* Positioning context for the event layer */
+}
+.time-slot {
+    display: flex;
+    border-bottom: 1px dashed var(--border-color);
+    height: 60px; /* Corresponds to SLOT_HEIGHT_PX in JS */
+}
+.time-slot:last-child {
+    border-bottom: none;
+}
+.time-label {
+    flex-shrink: 0;
+    width: 60px;
+    padding-right: 8px;
+    text-align: right;
+    font-size: 12px;
+    color: var(--text-secondary);
+    position: relative;
+    top: -8px; /* Align with the line */
+}
+.time-content {
+    flex-grow: 1;
+    border-left: 1px solid var(--border-color);
+    cursor: pointer;
+}
+.time-content:hover {
+    background-color: var(--today-highlight);
+}
+.day-view-events-layer {
+    position: absolute;
+    top: 0;
+    left: 61px; /* Time label width + border */
+    right: 0;
+    bottom: 0;
+    pointer-events: none; /* Allow clicking through to the time slots */
+}
+.day-view-event {
+    position: absolute;
+    right: 8px; /* Padding from the right edge */
+    left: 8px; /* Padding from the left edge (of the layer) */
+    background-color: rgba(0, 168, 132, 0.85); /* Slightly transparent */
+    color: white;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    overflow: hidden;
+    z-index: 10;
+    border-left: 3px solid var(--secondary-green);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: background-color 0.2s;
+    pointer-events: auto; /* Make events clickable */
+    cursor: pointer;
+}
+.day-view-event:hover {
+    background-color: rgba(0, 128, 105, 0.95);
+}
+.day-view-event .event-time {
+    font-weight: 600;
+}
+.day-view-event .event-details {
+    margin-top: 2px;
+    opacity: 0.9;
+}
+
+/* --- Modal Styles --- */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--modal-backdrop);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.modal-content {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+.modal-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-header h3 { font-size: 18px; }
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.form-group label {
+    font-weight: 600;
+    font-size: 14px;
+}
+.reminders-section fieldset {
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.reminders-section legend {
+    padding: 0 8px;
+    font-weight: 600;
+    font-size: 14px;
+}
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.reminder-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+.reminder-item input[type="number"] {
+    width: 60px;
+    padding: 6px;
+    text-align: center;
+}
+.reminder-item select {
+    width: auto;
+    padding: 6px;
+}
+.reminder-item input[type="time"] {
+    width: 100px;
+    padding: 6px;
+}
+.reminder-item .delete-reminder-btn {
+    background: none;
+    border: none;
+    color: #f44336;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    margin-left: auto;
+    padding: 4px;
+}
+.reminder-item .delete-reminder-btn:hover {
+    color: #d32f2f;
+}
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  align-items: center;
+}
+
+
+/* --- Address Book V2 Styles --- */
+.address-book-v2-container {
+    display: flex;
+    gap: 24px;
+    min-height: 50vh;
+}
+.address-book-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #fcfcfd;
+}
+.address-book-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 4px;
+}
+.address-book-panel-header h3 {
+    margin: 0;
+}
+.address-book-panel h3 {
+    font-size: 16px;
+}
+.select-all-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+.select-all-label input[type="checkbox"] {
+    width: auto;
+}
+.contact-list-v2 {
+    list-style: none;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    flex-grow: 1;
+}
+.contact-item-v2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+}
+.contact-item-v2:last-child {
+    border-bottom: none;
+}
+.contact-item-v2 label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    cursor: pointer;
+}
+.contact-item-v2 input[type="checkbox"] {
+    width: auto;
+    flex-shrink: 0;
+}
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+.contact-name {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.contact-number {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+.address-book-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.no-items-message {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+    padding: 30px;
+    margin: auto;
+}
+
+/* --- Reminders List Styles --- */
+.reminders-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.reminders-list-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.reminders-list {
+    list-style: none;
+    max-height: 60vh;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+}
+.reminder-list-item {
+    display: flex;
+    gap: 16px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.reminder-list-item:last-child {
+    border-bottom: none;
+}
+.reminder-list-item:hover {
+    background-color: var(--today-highlight);
+}
+.reminder-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.reminder-contact {
+    font-weight: 600;
+    font-size: 15px;
+}
+.reminder-message {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+.reminder-time {
+    flex-shrink: 0;
+    width: 150px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+.reminder-time .date {
+    font-size: 14px;
+    font-weight: 500;
+}
+.reminder-time .time {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+.reminders-list-container .no-items-message {
+    padding: 40px;
+}
+
+/* --- Entry Screen --- */
+.entry-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+.entry-box {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 40px;
+    background-color: var(--panel-background);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.entry-logo {
+    max-width: 250px;
+    height: auto;
+}
+.btn-enter {
+    width: auto;
+    padding: 12px 48px;
+    font-size: 16px;
+}
+
+/* Override for the Enter button */
+.btn-enter.btn-primary {
+    background-color: #2d2d2d; /* Dark charcoal base */
+    border: 1px solid #2d2d2d;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-enter.btn-primary:hover {
+    background-color: #D9006C; /* Fuchsia on hover */
+    border-color: #C70067; /* Darker fuchsia border on hover */
+    color: white;
+}
+
+
+/* --- Font Styling --- */
+.booking-container h3,
+.booking-container h4,
+.modal-header h3,
+.reminders-list-header h3,
+.address-book-panel-header h3 {
+    font-family: var(--font-family-display);
+    font-weight: 400; /* Script fonts are often not bold */
+    font-size: 26px; /* Larger size for display font */
+}
+
+.form-check-label {
+    font-family: var(--font-family-display);
+    font-size: 22px;
+    font-weight: 400;
+}
+
+/* Larger input fields for customer details */
+#user-name, 
+#user-phone {
+    font-size: 16px; /* Increased font size */
+    padding: 14px;   /* Increased padding for more height */
+}
+
+/* --- Dashboard Styles --- */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.dashboard-section h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.appointment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.appointment-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: #fcfcfd;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+.appointment-card:hover {
+    background-color: var(--today-highlight);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+.appointment-card-time {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-green);
+    background-color: var(--today-highlight);
+    border-radius: 6px;
+    padding: 8px 12px;
+}
+.appointment-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.appointment-card-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+.appointment-card-message {
+    font-size: 14px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 400px; /* Adjust as needed */
+}
+
+/* --- Services Page Styles --- */
+.services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+}
+.services-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+}
+.services-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.services-table th, .services-table td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+.services-table thead {
+    background-color: #f8f9fa;
+}
+.services-table th {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+.services-table td {
+    font-size: 14px;
+}
+.services-table .button-group {
+    justify-content: flex-end;
+}

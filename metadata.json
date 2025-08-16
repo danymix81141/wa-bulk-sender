@@ -1,0 +1,5 @@
+{
+  "name": "WA Bulk Message Sender 2.0",
+  "description": "A frontend client for a bulk WhatsApp messaging service. Connects via WebSocket to a backend for QR code login and message dispatching.",
+  "requestFramePermissions": []
+}
